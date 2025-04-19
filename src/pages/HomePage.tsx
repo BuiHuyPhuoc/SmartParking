@@ -1,11 +1,7 @@
-import { ChevronRight, ChevronsUpDown, Check } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../components/ui/popover";
-import { Button } from "../components/ui/button";
+import { Check, ChevronRight, ChevronsUpDown } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "../components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -14,9 +10,12 @@ import {
   CommandItem,
   CommandList,
 } from "../components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../components/ui/popover";
 import { cn } from "../lib/utils";
-import { Link } from "react-router-dom";
-import parkinglotImage from "@/assets/parkinglot.png";
 
 
 export default function HomePage() {
