@@ -363,7 +363,7 @@ export default function SearchPage() {
               <div className="h-full flex flex-col md:flex-row p-2 md:p-4 bg-background rounded-lg shadow-md">
                 <div className="md:w-1/3 rounded-lg overflow-hidden">
                   <img
-                    src="./src/assets/hotel.png"
+                    src="/images/hotel.png"
                     alt="Accommodation"
                     className="h-full w-full object-cover"
                   />
