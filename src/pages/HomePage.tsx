@@ -16,6 +16,8 @@ import {
 } from "../components/ui/command";
 import { cn } from "../lib/utils";
 import { Link } from "react-router-dom";
+import parkinglotImage from "@/assets/parkinglot.png";
+
 
 export default function HomePage() {
   const destinations = [
@@ -23,37 +25,37 @@ export default function HomePage() {
       id: 1,
       name: "Hồ Chí Minh",
       accommodations: "15,546 chỗ ở",
-      image: "./src/assets/saigon.png",
+      image: "/images/saigon.png",
     },
     {
       id: 2,
       name: "Vũng Tàu",
       accommodations: "8,329 chỗ ở",
-      image: "./src/assets/vungtau.png",
+      image: "/images/vungtau.png",
     },
     {
       id: 3,
       name: "Đà Nẵng",
       accommodations: "5,534 chỗ ở",
-      image: "./src/assets/danang.png",
+      image: "/images/danang.png",
     },
     {
       id: 4,
       name: "Đà Lạt",
       accommodations: "5,165 chỗ ở",
-      image: "./src/assets/dalat.png",
+      image: "/images/dalat.png",
     },
     {
       id: 5,
       name: "Hà Nội",
       accommodations: "10,744 chỗ ở",
-      image: "./src/assets/hanoi.png",
+      image: "/images/hanoi.png",
     },
     {
       id: 6,
       name: "Phú Quốc",
       accommodations: "4,210 chỗ ở",
-      image: "./src/assets/phuquoc.png",
+      image: "/images/phuquoc.png",
     },
   ];
 
@@ -102,7 +104,7 @@ export default function HomePage() {
       {/* Hero Banner */}
       <div className="relative h-64 bg-blue-500">
         <img
-          src="./src/assets/parkinglot.png"
+          src="/images/parkinglot.png"
           alt="Beautiful Vietnamese beach"
           className="w-full h-full object-cover brightness-50"
         />
