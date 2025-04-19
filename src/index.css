@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* Áp dụng cho chế độ sáng */
+:root {
+  --primary-color: #000000;
+  --on-primary-color: #ffffff;
+  --secondary-color: #343a40;
+  --on-secondary-color: #ffffff;
+  --shadow: #000000;
+  --container-color: #f7f9fa;
+  --on-container-color: #000000;
+  --secondary-container-color: #dee2e6;
+  --on-secondary-container-color: #000000;
+  --background-color: #F7F9FA;
+  --border-color: #000000;
+  --primary-hover-color: #343a40;
+  --on-primary-hover-color: #e4e4e4;
+  --hard: #000000;
+  --on-hard-color: #ffffff;
+  --warning: #FFF085;
+  --on-warning: #000000;
+  --success: #4caf50;
+  --on-success: #ffffff;
+  --info: #2196f3;
+  --on-info: #ffffff;
+}
+
+[data-theme="light"] {
+  --primary-color: #000000;
+  --on-primary-color: #ffffff;
+  --secondary-color: #343a40;
+  --on-secondary-color: #ffffff;
+  --shadow: #a0aebb;
+  --container-color: #F7F9FA;
+  --on-container-color: #000000;
+  --secondary-container-color: #dee2e6;
+  --on-secondary-container-color: #000000;
+  --background-color: #ffffff;
+  --border-color: #000000;
+  --primary-hover-color: #343a40;
+  --on-primary-hover-color: #e4e4e4;
+  --hard: #000000;
+  --on-hard-color: #ffffff;
+  --warning: #FFF085;
+  --on-warning: #000000;
+  --success: #4caf50;
+  --on-success: #ffffff;
+  --info: #2196f3;
+  --on-info: #ffffff;
+}
+
+[data-theme="dark"] {
+  --primary-color: #ced4da;
+  --on-primary-color: #000000;
+  --secondary-color: #ced4da;
+  --on-secondary-color: #000000;
+  --shadow: #464646;
+  --container-color: #343a40;
+  --on-container-color: #f8f9fa;
+  --secondary-container-color: #ced4da;
+  --on-secondary-container-color: #f8f9fa;
+  --background-color: #212529;
+  --border-color: #e9ecef;
+  --primary-hover-color: #343a40;
+  --hard: #000000;
+  --on-hard-color: #ffffff;
+  --warning: #FFF085;
+  --on-warning: #000000;
+  --success: #4caf50;
+  --on-success: #ffffff;
+  --info: #2196f3;
+  --on-info: #ffffff;
+}
+
+@theme {
+  --color-primary: var(--primary-color);
+  --color-on-primary: var(--on-primary-color);
+  --color-secondary: var(--secondary-color);
+  --color-on-secondary: var(--on-secondary-color);
+  --color-shadow: var(--shadow);
+  --color-container: var(--container-color);
+  --color-background: var(--background-color);
+  --color-border: var(--border-color);
+  --color-primary-hover: var(--primary-hover-color);
+  --color-on-container: var(--on-container-color);
+  --color-secondary-container: var(--secondary-container-color);
+  --color-on-secondary-container: var(--on-secondary-container-color);
+  --color-hard: var(--hard);
+  --color-on-hard: var(--on-hard-color);
+  --color-on-primary-hover: var(--on-primary-hover-color);
+  --color-warning: var(--warning);
+  --color-on-warning: var(--on-warning);
+  --color-success: var(--success);
+  --color-on-success: var(--on-success);
+  --color-info: var(--info);
+  --color-on-info: var(--on-info);
+}
