@@ -1,4 +1,4 @@
-import { customToast } from "@/components/custom/toast";
+import { customToast } from "@/components/custom/Toast";
 import GithubLogo from "@/components/icon/GithubLogo";
 import GoogleLogo from "@/components/icon/GoogleLogo";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import authService from "@/services/api/authService";
 import { AnimatePresence, motion } from "framer-motion";
 import { Eye, EyeOff, Lock, LogIn, Mail, User, UserPlus } from "lucide-react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function AuthForm() {
   const navigate = useNavigate();
@@ -315,18 +315,7 @@ export default function AuthForm() {
 
                   <p className="text-center text-sm text-gray-500">
                     Don't have an account?{" "}
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document
-                          .querySelector("[data-value='register']")
-                          ?.click();
-                      }}
-                      className="text-blue-600 hover:underline"
-                    >
-                      Register
-                    </a>
+                    <Link to="/auth/register" className="text-blue-600" />
                   </p>
                 </motion.div>
               ) : (
@@ -362,16 +351,7 @@ export default function AuthForm() {
 
                   <p className="text-center text-sm text-gray-500">
                     Already have an account?{" "}
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.querySelector("[data-value='login']")?.click();
-                      }}
-                      className="text-blue-600 hover:underline"
-                    >
-                      Login
-                    </a>
+                    <Link to="/auth/login" className="text-blue-600" />
                   </p>
                 </motion.div>
               )}

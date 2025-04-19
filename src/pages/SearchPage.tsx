@@ -1,24 +1,6 @@
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
-import {
-  Star,
-  Wifi,
-  Home,
-  Package,
-  Car,
-  Bike,
-  Webcam,
-  ChevronsUpDown,
-  Check,
-} from "lucide-react";
-import { useEffect, useState } from "react";
-import { addressService } from "@/services/api";
-import axios from "axios";
-import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
-import { PopoverContent } from "@/components/ui/popover";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Command,
   CommandEmpty,
@@ -27,7 +9,23 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { PopoverContent } from "@/components/ui/popover";
+import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
+import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
+import axios from "axios";
+import {
+  Bike,
+  Car,
+  Check,
+  ChevronsUpDown,
+  Home,
+  Package,
+  Star,
+  Webcam,
+  Wifi,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface AddressDTO {
   id: number;
