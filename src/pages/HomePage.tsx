@@ -99,15 +99,15 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="bg-background font-sans mx-auto">
+    <div className="bg-container font-sans mx-auto">
       {/* Hero Banner */}
-      <div className="relative h-64 bg-blue-500">
+      <div className="relative h-64">
         <img
           src="/images/parkinglot.png"
           alt="Beautiful Vietnamese beach"
           className="w-full h-full object-cover brightness-50"
         />
-        <div className="absolute inset-0 bg-blue-900/30"></div>
+        <div className="absolute inset-0"></div>
 
         {/* Main Heading */}
         <div className="absolute inset-0 flex justify-center items-center">

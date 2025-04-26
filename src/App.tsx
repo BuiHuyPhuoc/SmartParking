@@ -5,10 +5,8 @@ function App() {
   const routeElements = useRouteElements();
   return (
     <>
-      <div className="container bg-container">
-        {routeElements}
-        <ToasterProvider />
-      </div>
+      {routeElements}
+      <ToasterProvider />
     </>
   );
 }

@@ -4,6 +4,7 @@ import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
 import AuthForm from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
+import DetailPage from "./pages/DetailPage";
 
 export default function useRouteElements() {
   const routes = useRoutes([
@@ -21,6 +22,10 @@ export default function useRouteElements() {
         {
           path: "/search",
           element: <SearchPage />,
+        },
+        {
+          path: "/detail",
+          element: <DetailPage />,
         },
       ],
     },

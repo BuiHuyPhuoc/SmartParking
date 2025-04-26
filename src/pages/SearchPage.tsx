@@ -1,122 +1,100 @@
-import { Button } from "@/components/ui/button";
+import LocationPicker from "@/components/custom/LocationPicker";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import { PopoverContent } from "@/components/ui/popover";
 import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
-import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
-import axios from "axios";
-import {
-  Bike,
-  Car,
-  Check,
-  ChevronsUpDown,
-  Home,
-  Package,
-  Star,
-  Webcam,
-  Wifi,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { Bike, Car, Home, Package, Star, Webcam, Wifi } from "lucide-react";
+import { useState } from "react";
 
-interface AddressDTO {
-  id: number;
-  name: string;
-  name_en: string;
-  full_name: string;
-  full_name_en: string;
-  latitude: number;
-  longitude: number;
-}
+// interface AddressDTO {
+//   id: number;
+//   name: string;
+//   name_en: string;
+//   full_name: string;
+//   full_name_en: string;
+//   latitude: number;
+//   longitude: number;
+// }
 
-interface APIGetProvincesResponse {
-  data_name: string;
-  data: AddressDTO[];
-  error_text: string;
-}
+// interface APIGetProvincesResponse {
+//   data_name: string;
+//   data: AddressDTO[];
+//   error_text: string;
+// }
 
 export default function SearchPage() {
   const [searchMaxValue, setSearchMaxValue] = useState(0);
 
-  const [province, setProvince] = useState<AddressDTO>();
-  const [openPickProvince, setOpenPickProvince] = useState(false);
-  const [provinces, setProvinces] = useState<AddressDTO[]>([]);
+  // const [province, setProvince] = useState<AddressDTO>();
+  // const [openPickProvince, setOpenPickProvince] = useState(false);
+  // const [provinces, setProvinces] = useState<AddressDTO[]>([]);
 
-  const [district, setDistrict] = useState<AddressDTO>();
-  const [openPickDistrict, setOpenPickDistrict] = useState(false);
-  const [districts, setDistricts] = useState<AddressDTO[]>([]);
+  // const [district, setDistrict] = useState<AddressDTO>();
+  // const [openPickDistrict, setOpenPickDistrict] = useState(false);
+  // const [districts, setDistricts] = useState<AddressDTO[]>([]);
 
-  const [ward, setWard] = useState<AddressDTO>();
-  const [openPickWard, setOpenPickWard] = useState(false);
-  const [wards, setWards] = useState<AddressDTO[]>([]);
+  // const [ward, setWard] = useState<AddressDTO>();
+  // const [openPickWard, setOpenPickWard] = useState(false);
+  // const [wards, setWards] = useState<AddressDTO[]>([]);
 
-  useEffect(() => {
-    axios
-      .get<APIGetProvincesResponse>("https://esgoo.net/api-tinhthanh/1/0.htm")
-      .then((response) => {
-        console.log(response.data);
-        setProvinces(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching provinces:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get<APIGetProvincesResponse>("https://esgoo.net/api-tinhthanh/1/0.htm")
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setProvinces(response.data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching provinces:", error);
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    setDistrict(undefined);
+  // useEffect(() => {
+  //   setDistrict(undefined);
 
-    if (!province) {
-      setDistricts([]);
-      return;
-    }
+  //   if (!province) {
+  //     setDistricts([]);
+  //     return;
+  //   }
 
-    axios
-      .get<APIGetProvincesResponse>(
-        `https://esgoo.net/api-tinhthanh/2/${province.id}.htm`
-      )
-      .then((response) => {
-        console.log(response.data);
-        setDistricts(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching districts:", error);
-        setDistricts([]);
-      });
-  }, [province]);
+  //   axios
+  //     .get<APIGetProvincesResponse>(
+  //       `https://esgoo.net/api-tinhthanh/2/${province.id}.htm`
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setDistricts(response.data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching districts:", error);
+  //       setDistricts([]);
+  //     });
+  // }, [province]);
 
-  useEffect(() => {
-    setWard(undefined);
-    if (!district) {
-      setWards([]);
-      return;
-    }
+  // useEffect(() => {
+  //   setWard(undefined);
+  //   if (!district) {
+  //     setWards([]);
+  //     return;
+  //   }
 
-    axios
-      .get<APIGetProvincesResponse>(
-        `https://esgoo.net/api-tinhthanh/3/${district.id}.htm`
-      )
-      .then((response) => {
-        console.log(response.data);
-        setWards(response.data.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching wards:", error);
-        setWards([]);
-      });
-  }, [district]);
+  //   axios
+  //     .get<APIGetProvincesResponse>(
+  //       `https://esgoo.net/api-tinhthanh/3/${district.id}.htm`
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setWards(response.data.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching wards:", error);
+  //       setWards([]);
+  //     });
+  // }, [district]);
 
   return (
     <div className="max-w-7xl mx-auto p-4">
       {/* Search Bar */}
-      <div className="flex flex-col md:flex-row gap-2 mb-6">
+      {/* <div className="flex flex-col md:flex-row gap-2 mb-6">
         <div className="md:w-1/3">
           <Popover open={openPickProvince} onOpenChange={setOpenPickProvince}>
             <PopoverTrigger asChild>
@@ -214,6 +192,7 @@ export default function SearchPage() {
             </PopoverContent>
           </Popover>
         </div>
+
         <div className="md:w-1/3">
           <Popover open={openPickWard} onOpenChange={setOpenPickWard}>
             <PopoverTrigger asChild>
@@ -262,10 +241,20 @@ export default function SearchPage() {
             </PopoverContent>
           </Popover>
         </div>
+
         <Button className="bg-primary text-on-primary hover:bg-primary-hover hover:text-on-primary-hover">
           Tìm
         </Button>
-      </div>
+      </div> */}
+
+      <LocationPicker
+        className="flex flex-col md:flex-row gap-2 mb-6"
+        onChange={(province, district, ward) => {
+          console.log("Tỉnh đã chọn:", province);
+          console.log("Huyện đã chọn:", district);
+          console.log("Phường đã chọn:", ward);
+        }}
+      />
 
       {/* Main Content */}
       <div className="flex flex-col md:flex-row gap-6">
@@ -277,12 +266,14 @@ export default function SearchPage() {
               defaultValue={[searchMaxValue]}
               max={500000}
               step={10000}
-              className="mb-4 bg-primary rounded-lg"
+              className="mb-4 bg-primary-hover selection:bg-primary rounded-lg"
               onValueChange={(value) => setSearchMaxValue(value[0])}
             />
             <div className="flex justify-between">
-              <div className="border rounded-full px-4 py-1 text-sm">0</div>
-              <div className="border rounded-full px-4 py-1 text-sm">
+              <div className="border border-border text-primary rounded-full px-4 py-1 text-sm">
+                0
+              </div>
+              <div className="border border-border text-primary rounded-full px-4 py-1 text-sm">
                 {searchMaxValue}
               </div>
             </div>
@@ -371,31 +362,39 @@ export default function SearchPage() {
                 <div className="p-4 md:p-6 flex-1">
                   <div className="flex justify-between items-start mb-2">
                     <div>
-                      <h2 className="text-xl font-bold">Bãi đỗ Tân Sơn Nhất</h2>
-                      <p className="text-gray-600">
+                      <h2 className="text-primary text-xl font-bold">
+                        Bãi đỗ Tân Sơn Nhất
+                      </h2>
+                      <p className="text-primary">
                         Tân Bình, Thành phố Hồ Chí Minh
                       </p>
                     </div>
                     <div className="flex items-center">
                       <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                      <span className="text-xl font-bold ml-1">4.9</span>
+                      <span className="text-primary text-xl font-bold ml-1">
+                        4.9
+                      </span>
                     </div>
                   </div>
 
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between">
                       <div className="flex items-center gap-2">
-                        <Bike className="w-5 h-5" />
-                        <span>Xe máy</span>
+                        <Bike className="w-5 h-5 text-primary" />
+                        <span className="text-primary">Xe máy</span>
                       </div>
-                      <span className="font-medium">20.000 VND/Ngày</span>
+                      <span className="text-primary font-medium">
+                        20.000 VND/Ngày
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <div className="flex items-center gap-2">
-                        <Car className="w-5 h-5" />
-                        <span>Xe hơi</span>
+                        <Car className="w-5 h-5 text-primary" />
+                        <span className="text-primary">Xe hơi</span>
                       </div>
-                      <span className="font-medium">50.000 VND/Ngày</span>
+                      <span className="font-medium text-primary">
+                        50.000 VND/Ngày
+                      </span>
                     </div>
                   </div>
 

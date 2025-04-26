@@ -22,12 +22,12 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a
-              href="#features"
+            <Link
+              to="/search"
               className="font-medium text-primary hover:primary-hover transition-colors"
             >
               Booking
-            </a>
+            </Link>
             <a
               href="#how-it-works"
               className="font-medium text-primary hover:primary-hover transition-colors"
