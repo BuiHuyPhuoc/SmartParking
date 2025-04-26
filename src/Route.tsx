@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import AuthForm from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
+import SendSupportMailSuccessPage from "./pages/SendSupportMailSuccessPage";
 
 export default function useRouteElements() {
   const routes = useRoutes([
@@ -26,6 +27,10 @@ export default function useRouteElements() {
         {
           path: "/detail",
           element: <DetailPage />,
+        },
+        {
+          path: "/success",
+          element: <SendSupportMailSuccessPage />,
         },
       ],
     },
