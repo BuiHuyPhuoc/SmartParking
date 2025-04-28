@@ -1,9 +1,9 @@
-import apiClient from './config';
+import http from './config';
 import authService from './authService';
 import addressService from './addressService';
 
 export {
-  apiClient,
+  http as apiClient,
   authService,
   addressService,
 };

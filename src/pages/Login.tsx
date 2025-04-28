@@ -35,11 +35,11 @@ export default function AuthForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email + " " + password);
     try {
       const response = await authService.login({ email, password });
+      console.log(response);
       // Store the token
-      localStorage.setItem("token", response.token);
+      localStorage.setItem("token", response.value.token);
 
       customToast.success("Success!", "Login success!");
       navigate("/");

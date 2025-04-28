@@ -1,4 +1,4 @@
-import apiClient from "./config";
+import http from "./config";
 
 interface LoginCredentials {
   email: string;
@@ -13,26 +13,33 @@ interface RegisterData {
 }
 
 interface AuthResponse {
-  user: {
-    id: number;
-    name: string;
-    email: string;
-    // Add other user properties as needed
+  status: number;
+  message: string;
+  success: boolean;
+  value: {
+      id: number;
+      fullName: string;
+      email: string;
+      password: string;
+      phone: string;
+      role: string;
+      token: string;
   };
-  token: string;
 }
+
+
 
 const authService = {
   login: async (credentials: LoginCredentials) => {
-    const response = await apiClient.post<AuthResponse>(
-      "/api/Auth/Login",
+    const response = await http.post<AuthResponse>(
+      "/login",
       credentials
     );
     return response.data;
   },
 
   register: async (userData: RegisterData) => {
-    const response = await apiClient.post<AuthResponse>(
+    const response = await http.post<AuthResponse>(
       "/auth/Auth/Register",
       userData
     );
@@ -41,7 +48,7 @@ const authService = {
 
   logout: async () => {
     try {
-      await apiClient.post("/auth/logout");
+      await http.post("/auth/logout");
       localStorage.removeItem("token");
     } catch (error) {
       console.error("Logout error:", error);
@@ -51,7 +58,7 @@ const authService = {
   },
 
   forgotPassword: async (email: string) => {
-    const response = await apiClient.post("/auth/forgot-password", { email });
+    const response = await http.post("/auth/forgot-password", { email });
     return response.data;
   },
 
@@ -60,7 +67,7 @@ const authService = {
     password: string,
     password_confirmation: string
   ) => {
-    const response = await apiClient.post("/auth/reset-password", {
+    const response = await http.post("/auth/reset-password", {
       token,
       password,
       password_confirmation,
