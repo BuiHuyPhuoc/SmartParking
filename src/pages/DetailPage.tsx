@@ -14,9 +14,9 @@ import {
   Info,
   Notebook,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function ParkingRentalUI() {
-
   const items: PageMarkNavigationItem[] = [
     { title: "Chung", value: "common", isPicked: true, icon: Info },
     { title: "Mô tả", value: "description", isPicked: false, icon: Notebook },
@@ -33,7 +33,6 @@ export default function ParkingRentalUI() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-10">
       {/* Sidebar */}
-
       <div className="md:col-span-3">
         <PageMarkNavigation
           item={items}
@@ -43,9 +42,9 @@ export default function ParkingRentalUI() {
           }
         />
       </div>
-      <div className="md:col-span-9 grid grid-cols-1 gap-2">
+      <div className="md:col-span-9 grid grid-cols-12 gap-2">
         {/* Main Image */}
-        <div className="md:col-span-6 md:row-span-2">
+        <div className="h-full md:col-span-8 md:row-span-2">
           <div className="relative rounded-lg overflow-hidden">
             <img
               src="/images/parkinglot.png"
@@ -55,93 +54,86 @@ export default function ParkingRentalUI() {
           </div>
         </div>
 
-        {/* Right Info Card */}
-        <Card className="md:col-span-3 gap-2 p-4 rounded-lg border-none bg-background ">
-          <div className="flex items-center">
-            <div className="w-7 h-7 bg-black rounded-full flex items-center justify-center mr-2">
-              <span className="text-white text-xl">i</span>
+        <div className="md:col-span-4 gap-2 gap-x-0.5">
+          <Card className="p-4 rounded-lg border-none bg-background h-full block">
+            <div className="flex items-center">
+              <div className="w-7 h-7 bg-black rounded-full flex items-center justify-center mr-2">
+                <span className="text-white text-xl">i</span>
+              </div>
+              <h2 className="text-xl font-bold">Chung</h2>
             </div>
-            <h2 className="text-xl font-bold">Chung</h2>
-          </div>
-          <div className="">
-            <h1 className="text-lg font-bold">BÃI ĐỖ TÂN SƠN NHẤT</h1>
-            <p className=" text-gray-600 mt-1">
-              Tân Bình, Thành phố Hồ Chí Minh
-            </p>
+            <div className="">
+              <h1 className="text-lg font-bold">BÃI ĐỖ TÂN SƠN NHẤT</h1>
+              <p className=" text-gray-600 mt-1">
+                Tân Bình, Thành phố Hồ Chí Minh
+              </p>
 
-            <div className="flex gap-2 mt-4">
-              <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                </svg>
-              </div>
-              <div className="w-8 h-8 bg-teal-500 flex items-center justify-center rounded-md">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="2"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polygon points="10 8 16 12 10 16 10 8" />
-                </svg>
-              </div>
-              <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-              </div>
-              <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                </svg>
+              <div className="flex gap-2 mt-4">
+                <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                  </svg>
+                </div>
+                <div className="w-8 h-8 bg-teal-500 flex items-center justify-center rounded-md">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polygon points="10 8 16 12 10 16 10 8" />
+                  </svg>
+                </div>
+                <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                </div>
+                <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+
+          <Link
+            to="/"
+            className="btn bg-primary py-2 text-on-primary rounded-sm block text-center"
+          >
+            Đặt ngay
+          </Link>
+        </div>
 
         {/* Description */}
         <Card className="md:col-span-12 p-0 rounded-lg overflow-hidden">
-          {/* <div className="flex items-center p-4 border-b border-gray-100">
-          <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center mr-2">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-            >
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-          </div>
-          <h2 className="font-medium">Mô tả</h2>
-        </div> */}
           <PageMark title="Mô tả" icon={Notebook} />
           <div className="p-4">
             <p className="text-sm">
