@@ -2,6 +2,9 @@ import { Car, Menu } from "lucide-react";
 import { useState } from "react";
 import ThemeToggleButton from "../components/custom/ToggleThemeButton";
 import { Link } from "react-router-dom";
+import LoginLabel from "@/components/custom/LoginLabel";
+import { LoginResponse } from "@/services/api/authService";
+import { GetLocalStr } from "@/services/utils/storage";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,9 +12,12 @@ export default function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const loginResponse = GetLocalStr<LoginResponse>("loginResponse");
+
   return (
     <>
-      <header className="bg-background shadow-md">
+      <header className="bg-background shadow-md mb-2">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <a href="/">
             <div className="flex items-center space-x-2">
@@ -49,18 +55,27 @@ export default function Header() {
           </nav>
 
           <div className="hidden md:flex space-x-4">
-            <Link
-              to="/auth/register"
-              className="cursor-pointer btn px-4 py-2 rounded-md text-primary font-medium transition-colors border border-primary hover:bg-on-primary-hover hover:text-primary-hover"
-            >
-              Register
-            </Link>
-            <Link
-              to="/auth/login"
-              className="cursor-pointer btn px-4 py-2 bg-primary text-on-primary rounded-md font-medium hover:bg-primary-hover hover:text-on-primary-hover transition-colors"
-            >
-              Login
-            </Link>
+            {!loginResponse ? (
+              <>
+                <Link
+                  to="/auth/register"
+                  className="cursor-pointer btn px-4 py-2 rounded-md text-primary font-medium transition-colors border border-primary hover:bg-on-primary-hover hover:text-primary-hover"
+                >
+                  Register
+                </Link>
+                <Link
+                  to="/auth/login"
+                  className="cursor-pointer btn px-4 py-2 bg-primary text-on-primary rounded-md font-medium hover:bg-primary-hover hover:text-on-primary-hover transition-colors"
+                >
+                  Login
+                </Link>
+              </>
+            ) : (
+              <>
+                <LoginLabel name={loginResponse.fullName} />
+              </>
+            )}
+
             <ThemeToggleButton />
           </div>
 

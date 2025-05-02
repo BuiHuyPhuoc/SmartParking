@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, Outlet, useRoutes } from "react-router-dom";
 import MasterLayout from "./common/MasterLayout";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
@@ -6,12 +6,36 @@ import AuthForm from "./pages/Login";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import SendSupportMailSuccessPage from "./pages/SendSupportMailSuccessPage";
+import ProfilePage from "./pages/ProfilePage";
+import { customToast } from "./components/custom/Toast";
+
+// eslint-disable-next-line react-refresh/only-export-components
+const ProtectedRoutes = () => {
+  const accessToken = localStorage.getItem("token");
+  customToast.warning("Warning!", "You need to login to access this page!");
+  return accessToken ? <Outlet /> : <Navigate to={"/auth/login"} />;
+};
+
+// eslint-disable-next-line react-refresh/only-export-components
+const RejectedRoutes = () => {
+  const accessToken = localStorage.getItem("token");
+  return !accessToken ? <Outlet /> : <Navigate to={"/"} />;
+};
 
 export default function useRouteElements() {
   const routes = useRoutes([
     {
       element: <MasterLayout />,
       children: [
+        {
+          element: <ProtectedRoutes />,
+          children: [
+            {
+              path: "/profile",
+              element: <ProfilePage />,
+            },
+          ],
+        },
         {
           path: "/",
           element: <HomePage />,
@@ -34,7 +58,10 @@ export default function useRouteElements() {
         },
       ],
     },
-    { element: <AuthForm />, path: "/auth/:state" },
+    {
+      element: <RejectedRoutes />,
+      children: [{ path: "/auth/:state", element: <AuthForm /> }],
+    },
   ]);
 
   return routes;

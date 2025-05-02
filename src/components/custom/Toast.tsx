@@ -1,9 +1,9 @@
 import { toast } from "sonner";
-import { 
-  SuccessToast, 
-  WarningToast, 
-  InfoToast, 
-  DefaultToast 
+import {
+  SuccessToast,
+  WarningToast,
+  InfoToast,
+  DefaultToast,
 } from "@/components/custom/CustomToast";
 
 export const customToast = {

@@ -1,4 +1,3 @@
-import { customToast } from "@/components/custom/Toast";
 import GithubLogo from "@/components/icon/GithubLogo";
 import GoogleLogo from "@/components/icon/GoogleLogo";
 import { Button } from "@/components/ui/button";
@@ -13,40 +12,59 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import authService from "@/services/api/authService";
+import { useLogin } from "@/services/hook/useLogin";
 import { AnimatePresence, motion } from "framer-motion";
 import { Eye, EyeOff, Lock, LogIn, Mail, User, UserPlus } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function AuthForm() {
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { state } = useParams<{ state: string }>();
   const [showPassword, setShowPassword] = useState(false);
   const [activeTab, setActiveTab] = useState(
     state === "register" ? "register" : "login"
   );
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const loginMutation = useLogin();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await authService.login({ email, password });
-      console.log(response);
-      // Store the token
-      localStorage.setItem("token", response.value.token);
-
-      customToast.success("Success!", "Login success!");
-      navigate("/");
-    } catch {
-      customToast.warning("Warning!", "Login failed!");
-    }
+    loginMutation.mutate({ email, password });
   };
+
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   try {
+  //     const loginRequest: Loginrequest = {
+  //       email: email,
+  //       password: password,
+  //     };
+
+  //     const response = await http.post<LoginResponse | undefined>(
+  //       "/login",
+  //       loginRequest
+  //     );
+
+  //     if (!response) {
+  //       customToast.warning("Warning!", "Login failed!");
+  //       return;
+  //     }
+
+  //     localStorage.setItem("token", response.value?.token || "");
+  //     localStorage.setItem("loginResponse", JSON.stringify(response.value));
+
+  //     customToast.success("Success!", "Login success!");
+  //     navigate("/");
+  //   } catch {
+  //     customToast.warning("Warning!", "Login failed!");
+  //   }
+  // };
 
   // Animation variants
   const tabContentVariants = {
@@ -314,8 +332,12 @@ export default function AuthForm() {
                   </div>
 
                   <p className="text-center text-sm text-gray-500">
-                    Don't have an account?{" "}
-                    <Link to="/auth/register" className="text-blue-600" />
+                    <Link
+                      to="/"
+                      className="text-primary/60 text-center text-sm"
+                    >
+                      Về trang chủ
+                    </Link>
                   </p>
                 </motion.div>
               ) : (

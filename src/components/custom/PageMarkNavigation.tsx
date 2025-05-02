@@ -12,7 +12,7 @@ export interface PageMarkNavigationItem {
 export interface PageMarkNavigationProps {
   item: PageMarkNavigationItem[];
   header: string;
-  className: string;
+  className?: string;
 }
 
 const PageMarkNavigation = (prop: PageMarkNavigationProps) => {
