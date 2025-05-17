@@ -1,11 +1,8 @@
 import { customToast } from "@/components/custom/Toast";
+import { CheckOTPRequest, LoginRequest, RegisterRequest } from "@/lib/models";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import authService, {
-  CheckOTPRequest,
-  LoginRequest,
-  RegisterRequest,
-} from "../api/authService";
+import { authService } from "../api";
 
 export const useCheckOTP = () => {
   const navigate = useNavigate();

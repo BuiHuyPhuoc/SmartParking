@@ -3,8 +3,8 @@ import { useState } from "react";
 import ThemeToggleButton from "../components/custom/ToggleThemeButton";
 import { Link } from "react-router-dom";
 import LoginLabel from "@/components/custom/LoginLabel";
-import { LoginResponse } from "@/services/api/authService";
 import { GetLocalStr } from "@/services/utils/storage";
+import { LoginResponse } from "@/lib/models";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,3 +1,4 @@
+import { ToastProps } from "@/lib/models";
 import { AlertCircle, Bell, CheckCircle, Info, X } from "lucide-react";
 
 export function SuccessToast({ message, description }: ToastProps) {

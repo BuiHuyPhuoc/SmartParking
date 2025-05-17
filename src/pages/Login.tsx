@@ -1,4 +1,4 @@
-import LoginForm from "@/components/custom/Loginform";
+import LoginForm from "@/components/custom/LoginForm";
 import RegisterForm from "@/components/custom/RegisterForm";
 import GithubLogo from "@/components/icon/GithubLogo";
 import GoogleLogo from "@/components/icon/GoogleLogo";
