@@ -26,7 +26,7 @@ export default function ListReview({ idLot }: { idLot: number }) {
                                     <img src="/images/dalat.png" alt="Nguyễn Văn A" />
                                 </Avatar>
                                 <div>
-                                    <div className="text-gray-500 text-xs">{format(review.createdAt, "dd/MM/yyyy")}</div>
+                                    <div className="text-gray-500 text-xs">{format(new Date(review.createdAt), "dd/MM/yyyy")}</div>
                                     <p className="font-bold text-lg">{review.user.fullName}</p>
                                     <p className="text-base text-primary/80">
                                         {review.comment}
