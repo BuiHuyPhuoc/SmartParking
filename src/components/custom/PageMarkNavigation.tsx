@@ -1,19 +1,7 @@
-import { Info, LucideIcon } from "lucide-react";
+import { PageMarkNavigationItem, PageMarkNavigationProps } from "@/lib/models";
+import { Info } from "lucide-react";
 import { useState } from "react";
 import { Card } from "../ui/card";
-
-export interface PageMarkNavigationItem {
-  title: string;
-  value: string;
-  isPicked: boolean;
-  icon?: LucideIcon;
-}
-
-export interface PageMarkNavigationProps {
-  item: PageMarkNavigationItem[];
-  header: string;
-  className?: string;
-}
 
 const PageMarkNavigation = (prop: PageMarkNavigationProps) => {
   const [items, setItems] = useState(prop.item);

@@ -1,16 +1,18 @@
-import PageMarkNavigation, {
-  PageMarkNavigationItem,
-} from "@/components/custom/PageMarkNavigation";
+import PageMarkNavigation from "@/components/custom/PageMarkNavigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import authService, { LoginResponse } from "@/services/api/authService";
+import { LoginResponse, PageMarkNavigationItem } from "@/lib/models";
+// import { LoginResponse } from "@/services/api/authService";
+import { useLogout } from "@/services/hook/useAuth";
 import { GetLocalStr } from "@/services/utils/storage";
 import { Info, Settings, ShieldAlert } from "lucide-react";
 import { useState } from "react";
 
 export default function ProfilePage() {
   const profile = GetLocalStr<LoginResponse>("loginResponse");
+
+  const logoutMutation = useLogout();
 
   const [formData, setFormData] = useState({
     firstName: profile?.fullName.split(" ")[0] || "No name",
@@ -20,7 +22,7 @@ export default function ProfilePage() {
     location: "e.g. New York, USA",
     postalCode: "23728167",
   });
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -55,7 +57,9 @@ export default function ProfilePage() {
           item={navItems}
         />
 
-        <Button onClick={authService.logout}></Button>
+        <Button onClick={() => logoutMutation.mutate()} className="w-full mt-2">
+          Đăng xuất
+        </Button>
       </div>
       <div className="md:col-span-9 w-full ">
         <div className="flex flex-col items-center mx-auto p-6 bg-white rounded-lg">

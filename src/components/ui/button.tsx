@@ -50,7 +50,7 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(
-        "bg-primary text-on-primary",
+        "bg-primary text-on-primary hover:bg-primary-hover",
         buttonVariants({ variant, size, className })
       )}
       {...props}

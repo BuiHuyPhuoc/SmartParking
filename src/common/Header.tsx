@@ -116,7 +116,7 @@ export default function Header() {
               <button className="px-4 py-2 rounded-md text-primary font-medium hover:bg-blue-50 transition-colors w-full text-left">
                 Log In
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-md font-medium hover:bg-blue-700 transition-colors w-full text-left">
+              <button className="px-4 py-2 bg-primary text-on-primary rounded-md font-medium hover:bg-primary-hover transition-colors w-full text-left">
                 Sign Up
               </button>
             </nav>

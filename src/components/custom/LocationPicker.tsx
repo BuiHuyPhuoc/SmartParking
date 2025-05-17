@@ -16,32 +16,8 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { cn } from "@/lib/utils"; // hàm gộp className
+import { AddressDTO, APIGetProvincesResponse, LocationPickerProps } from "@/lib/models";
 
-// Interface được cung cấp
-export interface AddressDTO {
-  id: number;
-  name: string;
-  name_en: string;
-  full_name: string;
-  full_name_en: string;
-  latitude: number;
-  longitude: number;
-}
-
-interface APIGetProvincesResponse {
-  data_name: string;
-  data: AddressDTO[];
-  error_text: string;
-}
-
-interface LocationPickerProps {
-  className?: string;
-  onChange?: (
-    province?: AddressDTO[],
-    district?: AddressDTO[],
-    ward?: AddressDTO[]
-  ) => void;
-}
 
 const LocationPicker: React.FC<LocationPickerProps> = ({
   className,
@@ -97,9 +73,9 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
 
   useEffect(() => {
     onChange?.(
-      province ? [province] : [],
-      district ? [district] : [],
-      ward ? [ward] : []
+      province,
+      district,
+      ward
     );
   }, [province, district, ward, onChange]);
 
@@ -167,7 +143,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
     <div className={cn("flex flex-col md:flex-row gap-2 mb-6", className)}>
       <div className="md:w-1/3">
         {renderSelect(
-          "Chọn tỉnh...",
+          "Chọn tỉnh",
           provinces,
           province,
           setProvince,
@@ -177,7 +153,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
       </div>
       <div className="md:w-1/3">
         {renderSelect(
-          "Chọn huyện...",
+          "Chọn huyện",
           districts,
           district,
           setDistrict,
@@ -187,7 +163,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
       </div>
       <div className="md:w-1/3">
         {renderSelect(
-          "Chọn phường...",
+          "Chọn phường",
           wards,
           ward,
           setWard,
@@ -195,9 +171,6 @@ const LocationPicker: React.FC<LocationPickerProps> = ({
           setOpenWard
         )}
       </div>
-      <Button className="bg-primary text-on-primary hover:bg-primary-hover hover:text-on-primary-hover">
-        Tìm
-      </Button>
     </div>
   );
 };

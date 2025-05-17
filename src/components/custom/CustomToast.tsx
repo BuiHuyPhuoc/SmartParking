@@ -1,10 +1,5 @@
 import { AlertCircle, Bell, CheckCircle, Info, X } from "lucide-react";
 
-interface ToastProps {
-  message: string;
-  description?: string;
-}
-
 export function SuccessToast({ message, description }: ToastProps) {
   return (
     <div className="flex items-start gap-3 p-4 bg-success rounded-md shadow-md">

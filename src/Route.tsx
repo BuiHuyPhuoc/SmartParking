@@ -8,12 +8,18 @@ import DetailPage from "./pages/DetailPage";
 import SendSupportMailSuccessPage from "./pages/SendSupportMailSuccessPage";
 import ProfilePage from "./pages/ProfilePage";
 import { customToast } from "./components/custom/Toast";
+import NotFoundPage from "./pages/NotFoundPage";
+import VerifyPage from "./pages/VerifyOTPPage";
+import PaymentPage from "./pages/PaymentPage";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ProtectedRoutes = () => {
   const accessToken = localStorage.getItem("token");
-  customToast.warning("Warning!", "You need to login to access this page!");
-  return accessToken ? <Outlet /> : <Navigate to={"/auth/login"} />;
+  if (!accessToken) {
+    customToast.warning("Warning!", "You need to login to access this page!");
+  } else {
+    return <Outlet />;
+  }
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -34,6 +40,10 @@ export default function useRouteElements() {
               path: "/profile",
               element: <ProfilePage />,
             },
+            {
+              path: "/result",
+              element: <PaymentPage />,
+            }
           ],
         },
         {
@@ -49,19 +59,26 @@ export default function useRouteElements() {
           element: <SearchPage />,
         },
         {
-          path: "/detail",
+          path: "/detail/:id",
           element: <DetailPage />,
         },
         {
           path: "/success",
           element: <SendSupportMailSuccessPage />,
-        },
+        }
       ],
     },
     {
       element: <RejectedRoutes />,
-      children: [{ path: "/auth/:state", element: <AuthForm /> }],
+      children: [{ path: "/auth/:state", element: <AuthForm /> }, {
+        path: "/verify",
+        element: <VerifyPage />
+      },],
     },
+    {
+      path: "*",
+      element: <NotFoundPage />,
+    }
   ]);
 
   return routes;

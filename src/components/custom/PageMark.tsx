@@ -1,18 +1,11 @@
-import { LucideIcon } from "lucide-react";
+import { PageMarkProps } from "@/lib/models";
 
-interface PageMarkProps {
-  title: string;
-  icon: LucideIcon;
-  size?: number;
-}
 
 const PageMark = (props: PageMarkProps) => {
   return (
     <div className="flex items-center">
-      <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-2">
-        <props.icon className="text-on-primary bg-primary" size={16} />
-      </div>
-      <h2 className="font-medium">{props.title}</h2>
+      <props.icon className="bg-primary text-on-primary rounded-full p-1 mr-2" size={props.size} />
+      <h2 className="text-xl font-bold">{props.title}</h2>
     </div>
   );
 };

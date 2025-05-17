@@ -1,20 +1,22 @@
-import axios from 'axios';
+import { customToast } from "@/components/custom/Toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Create axios instance with default config
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000/api",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-  timeout: 10000, // 10 seconds
+  timeout: 30000,
 });
 
 // Request interceptor for adding auth token
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
     }
     return config;
   },
@@ -28,14 +30,22 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     const { response } = error;
+    const navigate = useNavigate();
     
-    // Handle authentication errors
     if (response && response.status === 401) {
-      localStorage.removeItem('token');
-      // Redirect to login page if needed
-      window.location.href = '/auth/login';
+      localStorage.removeItem("token");
+      navigate("/auth/login");
     }
-    
+
+    if (response && response.status === 500) {
+      customToast.warning("Warning!", "Server error! Please try again later.");
+    }
+
+    if (response && response.status === 404) {
+      customToast.warning("Warning!", "Resource not found!");
+      navigate("/notfound");
+    }
+
     return Promise.reject(error);
   }
 );
