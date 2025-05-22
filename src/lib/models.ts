@@ -104,6 +104,7 @@ export interface Lot {
   province: string;
   street: string;
   prices: PriceDTO[];
+  imageUrl: string;
 }
 
 export interface LotFilter {

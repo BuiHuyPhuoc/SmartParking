@@ -26,9 +26,10 @@ export const ItemSearch = ({ item, index }: { item: Lot, index: number }) => {
     return (
         <Card key={index} className="overflow-hidden border-none p-0" onClick={handleClick} >
             <div className="h-full flex flex-col md:flex-row p-2 md:p-4 bg-background rounded-lg shadow-md">
-                <div className="md:w-1/3 rounded-lg overflow-hidden">
+                <div className="md:w-1/3 rounded-lg overflow-hidden">\
+                    {console.log(item.imageUrl)}
                     <img
-                        src="/images/hotel.png"
+                        src={item.imageUrl || "/images/hotel.png"}
                         alt="Accommodation"
                         className="h-full w-full object-cover"
                     />
@@ -46,7 +47,7 @@ export const ItemSearch = ({ item, index }: { item: Lot, index: number }) => {
                         <div className="flex items-center">
                             <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                             <span className="text-primary text-xl font-bold ml-1">
-                                {averageRating} 
+                                {averageRating}
                             </span>
                         </div>
                     </div>

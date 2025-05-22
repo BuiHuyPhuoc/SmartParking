@@ -34,18 +34,12 @@ export default function Header() {
             >
               Booking
             </Link>
-            <a
-              href="#how-it-works"
+            <Link
+              to="/howitwork"
               className="font-medium text-primary hover:primary-hover transition-colors"
             >
               How It Works
-            </a>
-            <a
-              href="#pricing"
-              className="font-medium text-primary hover:primary-hover transition-colors"
-            >
-              Pricing
-            </a>
+            </Link>
             <a
               href="/about"
               className="font-medium text-primary hover:primary-hover transition-colors"

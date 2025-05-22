@@ -18,7 +18,7 @@ export default function ProfilePage() {
     firstName: profile?.fullName.split(" ")[0] || "No name",
     lastName: profile?.fullName,
     email: profile?.email,
-    phone: "(+98) 9123728167",
+    phone: profile?.phone,
     location: "e.g. New York, USA",
     postalCode: "23728167",
   });
