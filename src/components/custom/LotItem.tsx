@@ -27,7 +27,6 @@ export const ItemSearch = ({ item, index }: { item: Lot, index: number }) => {
         <Card key={index} className="overflow-hidden border-none p-0" onClick={handleClick} >
             <div className="h-full flex flex-col md:flex-row p-2 md:p-4 bg-background rounded-lg shadow-md">
                 <div className="md:w-1/3 rounded-lg overflow-hidden">\
-                    {console.log(item.imageUrl)}
                     <img
                         src={item.imageUrl || "/images/hotel.png"}
                         alt="Accommodation"
