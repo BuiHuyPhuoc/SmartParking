@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { JSX } from "react";
 
 export interface ToastProps {
   message: string;
@@ -41,12 +42,14 @@ export interface PageMarkNavigationItem {
   value: string;
   isPicked: boolean;
   icon?: LucideIcon;
+  component?: JSX.Element;
 }
 
 export interface PageMarkNavigationProps {
   item: PageMarkNavigationItem[];
   header: string;
   className?: string;
+  onClick?: (item: PageMarkNavigationItem) => void;
 }
 
 export interface LoginRequest {
@@ -105,6 +108,7 @@ export interface Lot {
   street: string;
   prices: PriceDTO[];
   imageUrl: string;
+  amenities: Amenity[];
 }
 
 export interface LotFilter {
@@ -150,4 +154,9 @@ export interface UserReview {
   id: number;
   fullName: string;
   role: string;
+}
+
+export interface Amenity {
+  id?: number;
+  amenityName: string;
 }

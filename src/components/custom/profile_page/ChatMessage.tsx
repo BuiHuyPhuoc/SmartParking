@@ -6,7 +6,7 @@ import {
 } from "@/services/hook/useChat";
 import useWebSocket from "@/services/hook/useWebSocket";
 import { GetLocalStr } from "@/services/utils/storage";
-import { Bot, MessageCircle, Plus, Send, User } from "lucide-react";
+import { Bot, MessageCircle, Send, User } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 // interface Message {
@@ -54,7 +54,7 @@ const ChatMessage: React.FC = () => {
       console.log(wsmessages[wsmessages.length - 1]);
       setContentChat((prev) => [...prev, wsmessages[wsmessages.length - 1]]);
     }
-  }, [wsmessages.length]);
+  }, [wsmessages, wsmessages.length]);
 
   console.log(contentChat);
 
@@ -120,7 +120,7 @@ const ChatMessage: React.FC = () => {
         {/* Sidebar - Lịch sử chat (30%) */}
         <div className="w-3/10 bg-white border-r border-gray-200 flex flex-col">
           {/* Header */}
-          <div className="p-4 border-b border-gray-200">
+          {/* <div className="p-4 border-b border-gray-200">
             <button
               //   onClick={createNewConversation}
               className="w-full flex items-center justify-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
@@ -129,7 +129,7 @@ const ChatMessage: React.FC = () => {
               <Plus size={16} />
               Hội thoại mới
             </button>
-          </div>
+          </div> */}
 
           {/* Danh sách hội thoại */}
           <div className="flex-1 overflow-y-auto">
@@ -138,11 +138,10 @@ const ChatMessage: React.FC = () => {
                 <div
                   key={conv.roomId}
                   onClick={() => handleConversationSelect(conv.roomId)}
-                  className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${
-                    activeConversation === conv.roomId
-                      ? "bg-blue-50 border-l-4 border-l-blue-500"
-                      : ""
-                  }`}
+                  className={`p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors ${activeConversation === conv.roomId
+                    ? "bg-blue-50 border-l-4 border-l-primary"
+                    : ""
+                    }`}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => {
@@ -189,23 +188,19 @@ const ChatMessage: React.FC = () => {
             ref={messagesContainerRef}
           >
             {contentChat.map((message: MessageResponse, idx: number) => {
-              // const newMessage = JSON.parse(message);
               return (
                 <div
                   key={idx}
-                  className={`flex ${
-                    message.role === "user" ? "justify-end" : "justify-start"
-                  }`}
+                  className={`flex ${message.role === "user" ? "justify-end" : "justify-start"
+                    }`}
                 >
                   <div
-                    className={`flex gap-2 max-w-xs lg:max-w-md ${
-                      message.role === "user" ? "flex-row-reverse" : ""
-                    }`}
+                    className={`flex gap-2 max-w-xs lg:max-w-md ${message.role === "user" ? "flex-row-reverse" : ""
+                      }`}
                   >
                     <div
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                        message.role === "user" ? "bg-blue-500" : "bg-gray-400"
-                      }`}
+                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${message.role === "user" ? "bg-primary" : "bg-gray-400"
+                        }`}
                     >
                       {message.role === "user" ? (
                         <User size={16} className="text-white" />
@@ -214,19 +209,17 @@ const ChatMessage: React.FC = () => {
                       )}
                     </div>
                     <div
-                      className={`px-4 py-2 rounded-lg ${
-                        message.role === "user"
-                          ? "bg-blue-500 text-white"
-                          : "bg-white border border-gray-200 text-gray-800"
-                      }`}
+                      className={`px-4 py-2 rounded-lg ${message.role === "user"
+                        ? "bg-primary text-white"
+                        : "bg-white border border-gray-200 text-gray-800"
+                        }`}
                     >
                       <p className="whitespace-pre-wrap">{message.message}</p>
                       <span
-                        className={`text-xs mt-1 block ${
-                          message.role === "user"
-                            ? "text-blue-100"
-                            : "text-gray-500"
-                        }`}
+                        className={`text-xs mt-1 block ${message.role === "user"
+                          ? "text-blue-100"
+                          : "text-gray-500"
+                          }`}
                       >
                         {/* {newMessage.time} */}
                       </span>
@@ -246,14 +239,14 @@ const ChatMessage: React.FC = () => {
                 onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
                 placeholder="Nhập tin nhắn của bạn..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 rows={1}
                 style={{ minHeight: "40px", maxHeight: "120px" }}
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!newMessage.trim()}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
                 type="button"
                 aria-label="Gửi tin nhắn"
               >

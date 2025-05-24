@@ -8,7 +8,7 @@ function LoginLabel({ name }: { name: string }) {
       className="text-primary text-xl cursor-pointer hover:text-line flex items-center space-x-2 transition-colors"
     >
       <CircleUserRound className="mr-1"></CircleUserRound> 
-      <p className="text-primary text-lg">Hello, {name}</p>
+      <p className="text-primary text-lg font-bold">{name}</p>
     </Link>
   );
 }

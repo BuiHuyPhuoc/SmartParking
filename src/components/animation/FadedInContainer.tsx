@@ -4,11 +4,12 @@ import { useEffect, useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FadedContainer = ({ children, triggerStart = 'top 85%' }) => {
-  const containerRef = useRef(null);
+const FadedContainer = ({ children, triggerStart = 'top 100%', className = '' }: { children: React.ReactNode, triggerStart?: string, className?: string }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      if (!containerRef.current) return;
       const childrenElements = containerRef.current.children;
 
       gsap.fromTo(
@@ -33,7 +34,7 @@ const FadedContainer = ({ children, triggerStart = 'top 85%' }) => {
   }, [triggerStart]);
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className={`${className}`}>
       {children}
     </div>
   );

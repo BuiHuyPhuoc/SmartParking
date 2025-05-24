@@ -1,6 +1,7 @@
+import FadedContainer from "@/components/animation/FadedInContainer";
 import ParkingOrderForm from "@/components/custom/BookingForm";
 import { LeaveCommentForm } from "@/components/custom/LeaveCommentForm";
-import ListReview from "@/components/custom/ListReview";
+import { ListReview } from "@/components/custom/ListReview";
 import PageMark from "@/components/custom/PageMark";
 import PageMarkNavigation from "@/components/custom/PageMarkNavigation";
 import { Button } from "@/components/ui/button";
@@ -17,14 +18,19 @@ import { useGetLotById } from "@/services/hook/useLot";
 import { MoneyConvert, StringConvert } from "@/services/utils/convert";
 import {
   BikeIcon,
+  Bot,
+  Camera,
   CarIcon,
   CircleDollarSign,
   Heart,
   HelpCircleIcon,
+  House,
   Info,
   InfoIcon,
   LucideIcon,
-  Notebook
+  Notebook,
+  Table,
+  Wifi
 } from "lucide-react";
 import { useParams } from "react-router-dom";
 
@@ -106,14 +112,13 @@ export default function ParkingRentalUI() {
         />
       </div>
 
-      <div className="md:col-span-9 grid grid-cols-12 gap-2">
-        {/* Main Image */}
-        <div className="md:col-span-12 grid grid-cols-7 gap-2">
+      <FadedContainer className="md:col-span-9 grid grid-cols-12 gap-2">
 
+        <div className="md:col-span-12 grid grid-cols-7 gap-2">
           <div className="h-full md:col-span-4">
             <div className="h-full relative rounded-lg overflow-hidden">
               <img
-                src="/images/parkinglot.png"
+                src={lotData.value.imageUrl}
                 alt="Parking lot with car detection"
                 className="w-full h-full object-cover"
               />
@@ -123,64 +128,24 @@ export default function ParkingRentalUI() {
             <Card className="p-4 rounded-lg border-none bg-background h-full mb-2 flex flex-col">
               <PageMark title="Chung" icon={InfoIcon} size={24} />
 
-              <div className="mb-2">
+              <div className="mb-2 h-full">
                 <h1 className="text-lg font-bold mt-1">{lotData.value.name}</h1>
                 <p className=" text-gray-600 mt-1">
                   {`${lotData.value.street}, ${lotData.value.ward}, ${lotData.value.district}, ${lotData.value.province}`}
                 </p>
-
-                <div className="flex gap-2 mt-4">
-                  <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                      <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                    </svg>
-                  </div>
-                  <div className="w-8 h-8 bg-teal-500 flex items-center justify-center rounded-md">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="2"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <polygon points="10 8 16 12 10 16 10 8" />
-                    </svg>
-                  </div>
-                  <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                      <polyline points="9 22 9 12 15 12 15 22" />
-                    </svg>
-                  </div>
-                  <div className="w-8 h-8 bg-gray-100 flex items-center justify-center rounded-md">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    </svg>
-                  </div>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {lotData.value.amenities.map((item, index) => {
+                    const Icon = getIcon(item.amenityName);
+                    return (
+                      <div
+                        key={index}
+                        title={item.amenityName}
+                        className="w-10 h-10 flex cursor-pointer hover:bg-primary/50 items-center justify-center gap-1 bg-primary rounded-2xl px-2 py-1"
+                      >
+                        <Icon size={16} className="text-on-primary" />
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <Dialog>
@@ -194,6 +159,7 @@ export default function ParkingRentalUI() {
                   <ParkingOrderForm idLot={lotId} vehicles={priceCards} />
                 </DialogContent>
               </Dialog>
+
             </Card>
           </div>
         </div>
@@ -233,7 +199,7 @@ export default function ParkingRentalUI() {
 
         <ListReview idLot={lotId} />
 
-      </div>
+      </FadedContainer>
     </div>
   );
 }
@@ -262,6 +228,16 @@ const getIcon = (type: string): LucideIcon => {
       return CarIcon;
     case "motor":
       return BikeIcon;
+    case "Trong nhà":
+      return House;
+    case "Wifi":
+      return Wifi;
+    case "Tự động":
+      return Bot;
+    case "Camera":
+      return Camera
+    case "Tủ đồ":
+      return Table;
     default:
       return HelpCircleIcon; // icon mặc định nếu không khớp
   }

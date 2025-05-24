@@ -1,18 +1,17 @@
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
 import MasterLayout from "./common/MasterLayout";
-import AboutPage from "./pages/AboutPage";
-import HomePage from "./pages/HomePage";
-import AuthForm from "./pages/Login";
-import SearchPage from "./pages/SearchPage";
-import DetailPage from "./pages/DetailPage";
-import SendSupportMailSuccessPage from "./pages/SendSupportMailSuccessPage";
-import ProfilePage from "./pages/ProfilePage";
 import { customToast } from "./components/custom/Toast";
-import NotFoundPage from "./pages/NotFoundPage";
-import VerifyPage from "./pages/VerifyOTPPage";
-import PaymentPage from "./pages/PaymentPage";
+import AboutPage from "./pages/AboutPage";
+import DetailPage from "./pages/DetailPage";
+import HomePage from "./pages/HomePage";
 import HowItWorkPage from "./pages/HowItWorkPage";
-import ChatMessage from "./pages/ChatMessage";
+import AuthForm from "./pages/Login";
+import NotFoundPage from "./pages/NotFoundPage";
+import PaymentPage from "./pages/PaymentPage";
+import ProfilePage from "./pages/ProfilePage";
+import SearchPage from "./pages/SearchPage";
+import SendSupportMailSuccessPage from "./pages/SendSupportMailSuccessPage";
+import VerifyPage from "./pages/VerifyOTPPage";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ProtectedRoutes = () => {
@@ -52,10 +51,10 @@ export default function useRouteElements() {
           path: "/",
           element: <HomePage />,
         },
-        {
-          path: "/message",
-          element: <ChatMessage />,
-        },
+        // {
+        //   path: "/message",
+        //   element: <ChatMessage />,
+        // },
         {
           path: "/about",
           element: <AboutPage />,

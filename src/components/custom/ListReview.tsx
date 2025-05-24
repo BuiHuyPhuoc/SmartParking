@@ -5,12 +5,9 @@ import { useState } from 'react';
 import { Button } from '../ui/button';
 import { Card } from '../ui/card';
 
-export default function ListReview({ idLot }: { idLot: number }) {
-
+export const ListReview = ({ idLot }: { idLot: number }) => {
     const { data: reviews } = useGetReviewByLotId(idLot);
-
     const [countReview, setCountReview] = useState(5);
-
     const handleShowMore = () => {
         setCountReview((prev) => prev + 5);
     };
@@ -63,12 +60,6 @@ export default function ListReview({ idLot }: { idLot: number }) {
                     Xem thêm đánh giá
                 </Button>
             </div>
-
         </>
-
     );
-
-
-
-
 }
