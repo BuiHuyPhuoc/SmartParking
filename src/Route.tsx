@@ -12,6 +12,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import VerifyPage from "./pages/VerifyOTPPage";
 import PaymentPage from "./pages/PaymentPage";
 import HowItWorkPage from "./pages/HowItWorkPage";
+import ChatMessage from "./pages/ChatMessage";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const ProtectedRoutes = () => {
@@ -44,12 +45,16 @@ export default function useRouteElements() {
             {
               path: "/result",
               element: <PaymentPage />,
-            }
+            },
           ],
         },
         {
           path: "/",
           element: <HomePage />,
+        },
+        {
+          path: "/message",
+          element: <ChatMessage />,
         },
         {
           path: "/about",
@@ -66,24 +71,27 @@ export default function useRouteElements() {
         {
           path: "/success",
           element: <SendSupportMailSuccessPage />,
-        }
-        , {
+        },
+        {
           path: "/howitwork",
           element: <HowItWorkPage />,
-        }
+        },
       ],
     },
     {
       element: <RejectedRoutes />,
-      children: [{ path: "/auth/:state", element: <AuthForm /> }, {
-        path: "/verify",
-        element: <VerifyPage />
-      },],
+      children: [
+        { path: "/auth/:state", element: <AuthForm /> },
+        {
+          path: "/verify",
+          element: <VerifyPage />,
+        },
+      ],
     },
     {
       path: "*",
       element: <NotFoundPage />,
-    }
+    },
   ]);
 
   return routes;
