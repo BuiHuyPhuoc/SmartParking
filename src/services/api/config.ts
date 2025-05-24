@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 // Create axios instance with default config
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000/api",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3300/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -31,7 +31,7 @@ apiClient.interceptors.response.use(
   (error) => {
     const { response } = error;
     const navigate = useNavigate();
-    
+
     if (response && response.status === 401) {
       localStorage.removeItem("token");
       navigate("/auth/login");
